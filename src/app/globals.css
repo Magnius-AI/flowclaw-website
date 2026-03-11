@@ -23,9 +23,103 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Smooth momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 ::selection {
   background: rgba(0, 229, 204, 0.3);
   color: #fff;
+}
+
+/* ─── Hero background blobs (GPU-composited CSS animations) ─── */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  /* will-change only transform+opacity — stays on compositor thread */
+  will-change: transform;
+  pointer-events: none;
+}
+
+.hero-blob-1 {
+  width: min(800px, 90vw);
+  height: min(800px, 90vw);
+  background: radial-gradient(circle, rgba(0, 229, 204, 0.18) 0%, transparent 70%);
+  filter: blur(80px);
+  top: -15%;
+  right: -10%;
+  animation: blob1 18s ease-in-out infinite;
+}
+
+.hero-blob-2 {
+  width: min(600px, 70vw);
+  height: min(600px, 70vw);
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.14) 0%, transparent 70%);
+  filter: blur(70px);
+  bottom: -10%;
+  left: -5%;
+  animation: blob2 22s ease-in-out infinite;
+}
+
+.hero-blob-3 {
+  width: min(500px, 60vw);
+  height: min(500px, 60vw);
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.10) 0%, transparent 70%);
+  filter: blur(60px);
+  top: 35%;
+  left: 25%;
+  animation: blob3 26s ease-in-out infinite;
+}
+
+@keyframes blob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -25px) scale(1.06); }
+  66%       { transform: translate(-20px, 15px) scale(0.96); }
+}
+
+@keyframes blob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(-25px, 20px) scale(0.94); }
+  66%       { transform: translate(20px, -30px) scale(1.07); }
+}
+
+@keyframes blob3 {
+  0%, 100% { transform: translate(0, 0); }
+  50%       { transform: translate(35px, -25px); }
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+/* ─── Scroll fade-in (CSS-driven, JS only for class toggle) ─── */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Respect prefers-reduced-motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-blob {
+    animation: none;
+  }
+  .fade-in-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
