@@ -90,7 +90,7 @@ export default function Home() {
       {/* ───── NAV ───── */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-navy/60 border-b border-white/[0.04]">
         <div className="flex items-center gap-3">
-          <Image src="/logo-64.png" alt="flowClaw logo" width={36} height={36} className="drop-shadow-[0_0_8px_rgba(0,229,204,0.5)]" />
+          <Image src="/logo-64.png" alt="flowClaw logo" width={44} height={44} className="drop-shadow-[0_0_8px_rgba(0,229,204,0.5)]" />
           <span className="text-xl font-bold">
             <span className="text-white">flow</span>
             <span className="text-teal">Claw</span>
@@ -112,9 +112,9 @@ export default function Home() {
             <Image
               src="/logo-192.png"
               alt="flowClaw emblem"
-              width={96}
-              height={96}
-              className="mx-auto drop-shadow-[0_0_24px_rgba(0,229,204,0.4)]"
+              width={148}
+              height={148}
+              className="mx-auto drop-shadow-[0_0_40px_rgba(0,229,204,0.5)]"
             />
           </FadeIn>
           <FadeIn delay={0.05}>
