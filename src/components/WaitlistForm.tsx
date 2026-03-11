@@ -3,11 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Set NEXT_PUBLIC_FORM_ENDPOINT to your Formspree URL:
-// https://formspree.io/f/YOUR_ID
-// Leave blank to use a static success preview (pre-Resend setup)
-const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || "";
-
 export default function WaitlistForm({ compact = false }: { compact?: boolean }) {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -16,8 +11,8 @@ export default function WaitlistForm({ compact = false }: { compact?: boolean })
   const [emailError, setEmailError] = useState("");
 
   const validate = () => {
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailRe.test(email)) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !re.test(email)) {
       setEmailError("Please enter a valid email");
       return false;
     }
@@ -28,27 +23,20 @@ export default function WaitlistForm({ compact = false }: { compact?: boolean })
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
-
     setStatus("loading");
 
-    if (!FORM_ENDPOINT) {
-      // No endpoint configured yet — show success preview
-      await new Promise((r) => setTimeout(r, 600));
-      setStatus("success");
-      setMessage("You're on the list!");
-      return;
-    }
-
     try {
-      const res = await fetch(FORM_ENDPOINT, {
+      const res = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, name }),
       });
       const json = await res.json();
-      if (res.ok && json.ok !== false) {
+      if (res.ok) {
         setStatus("success");
-        setMessage("You're on the list!");
+        setMessage(json.message || "You're on the list!");
+        setEmail("");
+        setName("");
       } else {
         setStatus("error");
         setMessage(json.error || "Something went wrong. Try again.");
@@ -70,7 +58,7 @@ export default function WaitlistForm({ compact = false }: { compact?: boolean })
         >
           <p className="text-2xl mb-2">🎉</p>
           <p className="text-teal font-semibold text-lg">{message}</p>
-          <p className="text-gray-400 text-sm mt-1">We&apos;ll be in touch soon.</p>
+          <p className="text-gray-400 text-sm mt-1">Check your inbox — we&apos;ll be in touch.</p>
         </motion.div>
       ) : (
         <motion.form
