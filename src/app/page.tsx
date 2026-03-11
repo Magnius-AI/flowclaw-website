@@ -98,7 +98,7 @@ export default function Home() {
           </span>
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/blog" className="text-gray-400 hover:text-white text-sm transition-colors hidden sm:block">
+          <Link href="/blog" className="text-gray-400 hover:text-white text-sm transition-colors">
             Blog
           </Link>
           <a
