@@ -1,43 +1,58 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 
-const schema = z.object({
-  email: z.string().email("Please enter a valid email"),
-  name: z.string().optional(),
-});
-
-type FormData = z.infer<typeof schema>;
+// Set NEXT_PUBLIC_FORM_ENDPOINT to your Formspree URL:
+// https://formspree.io/f/YOUR_ID
+// Leave blank to use a static success preview (pre-Resend setup)
+const FORM_ENDPOINT = process.env.NEXT_PUBLIC_FORM_ENDPOINT || "";
 
 export default function WaitlistForm({ compact = false }: { compact?: boolean }) {
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [emailError, setEmailError] = useState("");
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm<FormData>();
+  const validate = () => {
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRe.test(email)) {
+      setEmailError("Please enter a valid email");
+      return false;
+    }
+    setEmailError("");
+    return true;
+  };
 
-  const onSubmit = async (data: FormData) => {
-    const parsed = schema.safeParse(data);
-    if (!parsed.success) return;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validate()) return;
 
     setStatus("loading");
+
+    if (!FORM_ENDPOINT) {
+      // No endpoint configured yet — show success preview
+      await new Promise((r) => setTimeout(r, 600));
+      setStatus("success");
+      setMessage("You're on the list!");
+      return;
+    }
+
     try {
-      const res = await fetch("/api/waitlist", {
+      const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ email, name }),
       });
       const json = await res.json();
-      setStatus("success");
-      setMessage(json.message || "You're on the list!");
-      reset();
+      if (res.ok && json.ok !== false) {
+        setStatus("success");
+        setMessage("You're on the list!");
+      } else {
+        setStatus("error");
+        setMessage(json.error || "Something went wrong. Try again.");
+      }
     } catch {
       setStatus("error");
       setMessage("Something went wrong. Try again.");
@@ -60,23 +75,25 @@ export default function WaitlistForm({ compact = false }: { compact?: boolean })
       ) : (
         <motion.form
           key="form"
-          onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit}
           className={`flex flex-col gap-3 w-full ${compact ? "max-w-md" : "max-w-lg"}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
         >
           {!compact && (
             <input
-              {...register("name")}
               type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Name (optional)"
               className="w-full px-4 py-3 bg-navy-lighter border border-white/10 rounded-lg text-foreground placeholder:text-gray-500 focus:outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-colors"
             />
           )}
-          <div className={`flex ${compact ? "flex-col sm:flex-row" : "flex-col sm:flex-row"} gap-3`}>
+          <div className="flex flex-col sm:flex-row gap-3">
             <input
-              {...register("email", { required: true })}
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
               className="flex-1 px-4 py-3 bg-navy-lighter border border-white/10 rounded-lg text-foreground placeholder:text-gray-500 focus:outline-none focus:border-teal/50 focus:ring-1 focus:ring-teal/30 transition-colors"
             />
@@ -88,12 +105,8 @@ export default function WaitlistForm({ compact = false }: { compact?: boolean })
               {status === "loading" ? "Joining..." : "Get Early Access"}
             </button>
           </div>
-          {errors.email && (
-            <p className="text-red-400 text-sm">Please enter a valid email</p>
-          )}
-          {status === "error" && (
-            <p className="text-red-400 text-sm">{message}</p>
-          )}
+          {emailError && <p className="text-red-400 text-sm">{emailError}</p>}
+          {status === "error" && <p className="text-red-400 text-sm">{message}</p>}
         </motion.form>
       )}
     </AnimatePresence>
