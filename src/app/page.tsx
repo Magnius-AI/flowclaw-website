@@ -90,7 +90,7 @@ export default function Home() {
       {/* ───── NAV ───── */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-navy/60 border-b border-white/[0.04]">
         <div className="flex items-center gap-3">
-          <Image src="/logo-64.png" alt="flowClaw logo" width={36} height={36} className="rounded-lg" />
+          <Image src="/logo-64.png" alt="flowClaw logo" width={36} height={36} className="drop-shadow-[0_0_8px_rgba(0,229,204,0.5)]" />
           <span className="text-xl font-bold">
             <span className="text-white">flow</span>
             <span className="text-teal">Claw</span>
@@ -254,7 +254,7 @@ export default function Home() {
       <footer className="py-12 px-6 border-t border-white/[0.06]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Image src="/logo-64.png" alt="flowClaw logo" width={32} height={32} className="rounded-md opacity-90" />
+            <Image src="/logo-64.png" alt="flowClaw logo" width={32} height={32} className="opacity-90 drop-shadow-[0_0_6px_rgba(0,229,204,0.4)]" />
             <span className="text-xl font-bold">
               <span className="text-white">flow</span>
               <span className="text-teal">Claw</span>
