@@ -9,13 +9,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://flowclaw.io"),
-  title: "flowClaw — Orchestrate intelligence. Deploy agents that think.",
+  title: "flowClaw — Managed Hosting for NVIDIA NemoClaw & AI Agents",
   description:
-    "flowClaw is the AI agent runtime platform for deploying intelligent agents that execute complex multi-step tasks autonomously. Join the waitlist.",
+    "flowClaw is the production platform for NVIDIA NemoClaw. Multi-tenancy, auth, billing, NIM inference, human-in-the-loop approvals, and observability — Day-1 ready for GTC 2026. Join the waitlist.",
+  keywords: ["NemoClaw", "NVIDIA NIM", "AI agents", "NemoClaw hosting", "AI agent platform", "NemoClaw managed", "GTC 2026", "flowClaw"],
   openGraph: {
-    title: "flowClaw — Orchestrate intelligence. Deploy agents that think.",
+    title: "flowClaw — The Managed Platform for NVIDIA NemoClaw",
     description:
-      "The AI agent runtime platform for deploying intelligent agents that execute complex multi-step tasks autonomously.",
+      "NemoClaw ships the agent runtime. flowClaw ships everything else. Multi-tenancy, auth, billing, NIM inference, and observability. Day-1 ready.",
     siteName: "flowClaw",
     type: "website",
     images: [{ url: "/logo-192.png", width: 192, height: 192, alt: "flowClaw logo" }],

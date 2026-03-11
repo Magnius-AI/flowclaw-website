@@ -5,9 +5,9 @@ import FadeIn from "@/components/FadeIn";
 
 const features = [
   {
-    title: "Agent Runtime",
+    title: "NIM Inference — Day 1",
     description:
-      "Deploy intelligent agents that execute complex multi-step tasks autonomously.",
+      "Native NVIDIA NIM integration. Run Nemotron, DeepSeek, Llama and 40+ models with zero infrastructure setup.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
         <path d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" strokeLinecap="round" strokeLinejoin="round" />
@@ -119,9 +119,17 @@ export default function Home() {
             />
           </FadeIn>
           <FadeIn delay={0.05}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-teal/20 rounded-full text-teal text-sm mb-4 bg-teal/5">
-              <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
-              Now accepting early access signups
+            <div className="flex flex-col items-center gap-2">
+              <a
+                href="https://www.wired.com/story/nvidia-planning-ai-agent-platform-launch-open-source/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-1.5 border border-teal/30 rounded-full text-teal text-sm bg-teal/10 hover:bg-teal/15 transition-colors"
+              >
+                <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
+                NVIDIA NemoClaw launching March 16 at GTC 2026 — flowClaw is Day-1 ready
+                <span className="text-teal/60 text-xs">↗</span>
+              </a>
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
@@ -140,25 +148,66 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.4}>
             <p className="text-gray-500 text-sm">
-              Join 200+ teams already on the waitlist. No spam, ever.
+              Join 200+ teams pre-registering for NemoClaw Day-1 access. No spam, ever.
             </p>
           </FadeIn>
         </div>
       </section>
 
+      {/* ───── NEMOCLAW CALLOUT ───── */}
+      <section className="py-16 px-6">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <div className="relative rounded-2xl border border-teal/20 bg-gradient-to-r from-teal/[0.04] via-transparent to-blue-500/[0.04] p-8 sm:p-10"
+              style={{ clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))" }}
+            >
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
+                <div className="flex-1">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-teal text-xs font-semibold mb-4">
+                    ⚡ MARCH 16 · GTC 2026
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+                    The managed hosting layer for NVIDIA NemoClaw
+                  </h2>
+                  <p className="text-gray-400 leading-relaxed">
+                    NemoClaw ships the agent runtime. flowClaw ships everything else —
+                    multi-tenancy, auth, billing, run history, human-in-the-loop approvals,
+                    observability, and webhooks. <strong className="text-white">Day-1 NIM inference support included.</strong>
+                  </p>
+                </div>
+                <div className="flex-shrink-0 grid grid-cols-2 gap-3 text-center">
+                  {[
+                    { label: "NIM Inference", icon: "⚡" },
+                    { label: "Multi-tenant", icon: "🏢" },
+                    { label: "Approvals", icon: "🛡️" },
+                    { label: "Run History", icon: "📊" },
+                  ].map((item) => (
+                    <div key={item.label} className="px-4 py-3 rounded-lg bg-white/[0.03] border border-white/[0.06] text-sm">
+                      <div className="text-xl mb-1">{item.icon}</div>
+                      <div className="text-gray-300 font-medium text-xs">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ───── WHAT IS FLOWCLAW ───── */}
-      <section className="py-24 px-6">
+      <section className="py-16 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              The AI Agent Runtime Platform
+              The Production Platform for AI Agents
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
             <p className="text-lg text-gray-400 leading-relaxed">
-              flowClaw is the infrastructure layer for autonomous AI agents.
-              Design multi-step workflows, deploy intelligent agents, and orchestrate
-              complex tasks — all with enterprise-grade security and scalability built in.
+              Open-source runtimes like NemoClaw solve execution. flowClaw solves everything
+              around it — the auth, billing, tenancy, monitoring, and human oversight
+              that separates a weekend demo from a product enterprises will pay for.
+              Think <strong className="text-white">Vercel for AI agents.</strong>
             </p>
           </FadeIn>
         </div>
@@ -236,12 +285,16 @@ export default function Home() {
             <div className="p-12 rounded-2xl border border-teal/10 bg-gradient-to-b from-teal/[0.03] to-transparent"
               style={{ clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))" }}
             >
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-teal text-xs font-semibold mb-4">
+                ⚡ NemoClaw launches March 16
+              </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Be first in line
+                Be ready when NemoClaw drops
               </h2>
               <p className="text-gray-400 mb-8 max-w-md mx-auto">
-                Early access spots are limited. Get priority access to flowClaw
-                before public launch and shape the future of AI agent infrastructure.
+                NVIDIA announces NemoClaw at GTC 2026 on March 16.
+                flowClaw is the Day-1 managed hosting platform — join the waitlist
+                now and get priority access the moment it launches.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm compact />
