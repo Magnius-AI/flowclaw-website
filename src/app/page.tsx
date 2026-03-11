@@ -1,3 +1,4 @@
+import Image from "next/image";
 import HeroBackground from "@/components/HeroBackground";
 import WaitlistForm from "@/components/WaitlistForm";
 import FadeIn from "@/components/FadeIn";
@@ -86,18 +87,44 @@ const steps = [
 export default function Home() {
   return (
     <main className="min-h-screen">
+      {/* ───── NAV ───── */}
+      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-navy/60 border-b border-white/[0.04]">
+        <div className="flex items-center gap-3">
+          <Image src="/logo-64.png" alt="flowClaw logo" width={36} height={36} className="rounded-lg" />
+          <span className="text-xl font-bold">
+            <span className="text-white">flow</span>
+            <span className="text-teal">Claw</span>
+          </span>
+        </div>
+        <a
+          href="#waitlist"
+          className="px-5 py-2 bg-teal text-navy text-sm font-bold rounded-lg hover:bg-teal-dark transition-all duration-200 shadow-[0_0_12px_rgba(0,229,204,0.25)] hover:shadow-[0_0_20px_rgba(0,229,204,0.4)]"
+        >
+          Get Early Access
+        </a>
+      </nav>
+
       {/* ───── HERO ───── */}
-      <section className="relative min-h-screen flex items-center justify-center px-6">
+      <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
         <HeroBackground />
         <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
           <FadeIn>
+            <Image
+              src="/logo-192.png"
+              alt="flowClaw emblem"
+              width={96}
+              height={96}
+              className="mx-auto drop-shadow-[0_0_24px_rgba(0,229,204,0.4)]"
+            />
+          </FadeIn>
+          <FadeIn delay={0.05}>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-teal/20 rounded-full text-teal text-sm mb-4 bg-teal/5">
               <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
               Now accepting early access signups
             </div>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+            <h1 id="waitlist" className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
               <span className="text-white">flow</span>
               <span className="text-teal">Claw</span>
             </h1>
@@ -226,9 +253,12 @@ export default function Home() {
       {/* ───── FOOTER ───── */}
       <footer className="py-12 px-6 border-t border-white/[0.06]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xl font-bold">
-            <span className="text-white">flow</span>
-            <span className="text-teal">Claw</span>
+          <div className="flex items-center gap-3">
+            <Image src="/logo-64.png" alt="flowClaw logo" width={32} height={32} className="rounded-md opacity-90" />
+            <span className="text-xl font-bold">
+              <span className="text-white">flow</span>
+              <span className="text-teal">Claw</span>
+            </span>
           </div>
           <p className="text-gray-500 text-sm">
             &copy; 2025 flowClaw. All rights reserved.
