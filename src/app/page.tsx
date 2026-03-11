@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import HeroBackground from "@/components/HeroBackground";
 import WaitlistForm from "@/components/WaitlistForm";
 import FadeIn from "@/components/FadeIn";
@@ -96,12 +97,17 @@ export default function Home() {
             <span className="text-teal">Claw</span>
           </span>
         </div>
-        <a
-          href="#waitlist"
-          className="px-5 py-2 bg-teal text-navy text-sm font-bold rounded-lg hover:bg-teal-dark transition-all duration-200 shadow-[0_0_12px_rgba(0,229,204,0.25)] hover:shadow-[0_0_20px_rgba(0,229,204,0.4)]"
-        >
-          Get Early Access
-        </a>
+        <div className="flex items-center gap-4">
+          <Link href="/blog" className="text-gray-400 hover:text-white text-sm transition-colors hidden sm:block">
+            Blog
+          </Link>
+          <a
+            href="#waitlist"
+            className="px-5 py-2 bg-teal text-navy text-sm font-bold rounded-lg hover:bg-teal-dark transition-all duration-200 shadow-[0_0_12px_rgba(0,229,204,0.25)] hover:shadow-[0_0_20px_rgba(0,229,204,0.4)]"
+          >
+            Get Early Access
+          </a>
+        </div>
       </nav>
 
       {/* ───── HERO ───── */}
