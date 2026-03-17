@@ -46,12 +46,12 @@ const features = [
     ),
   },
   {
-    title: "AI-Powered Queries",
+    title: "Sandboxed Execution",
     description:
-      "Natural language interface to query, analyze, and act on your data.",
+      "Every NemoClaw agent runs inside a kernel-isolated sandbox — Landlock + seccomp + network namespaces. OS-level isolation, not just software boundaries.",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -62,6 +62,16 @@ const features = [
     icon: (
       <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
         <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Blueprint Management",
+    description:
+      "Define, version, and deploy NemoClaw workflow configs as blueprints. One-click sandbox provisioning per tenant from a shared library.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
+        <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -127,13 +137,13 @@ export default function Home() {
           <FadeIn delay={0.05}>
             <div className="flex flex-col items-center gap-2">
               <a
-                href="https://www.wired.com/story/nvidia-planning-ai-agent-platform-launch-open-source/"
+                href="https://github.com/NVIDIA/NemoClaw"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-1.5 border border-teal/30 rounded-full text-teal text-sm bg-teal/10 hover:bg-teal/15 transition-colors"
               >
                 <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
-                NVIDIA NemoClaw launching March 16 at GTC 2026 — flowClaw is Day-1 ready
+                NVIDIA NemoClaw is live — flowClaw integration shipped March 17
                 <span className="text-teal/60 text-xs">↗</span>
               </a>
             </div>
@@ -154,7 +164,7 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.4}>
             <p className="text-gray-500 text-sm">
-              Join 200+ teams pre-registering for NemoClaw Day-1 access. No spam, ever.
+              Join 200+ teams building on NemoClaw. No spam, ever.
             </p>
           </FadeIn>
         </div>
@@ -170,22 +180,23 @@ export default function Home() {
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-teal text-xs font-semibold mb-4">
-                    ⚡ MARCH 16 · GTC 2026
+                    ✅ SHIPPED · MARCH 17, 2026
                   </div>
                   <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
                     The managed hosting layer for NVIDIA NemoClaw
                   </h2>
                   <p className="text-gray-400 leading-relaxed">
-                    NemoClaw ships the agent runtime. flowClaw ships everything else —
-                    multi-tenancy, auth, billing, run history, human-in-the-loop approvals,
-                    observability, and webhooks. <strong className="text-white">Day-1 NIM inference support included.</strong>
+                    NemoClaw runs OpenClaw agents in kernel-isolated sandboxes — Landlock, seccomp,
+                    network namespaces. flowClaw wraps it with the production layer it&apos;s missing:
+                    multi-tenancy, auth, billing, run history, human-in-the-loop approvals, and a
+                    full sandbox management API. <strong className="text-white">Integration is live. Day-1 on Nemotron-3-Super-120B.</strong>
                   </p>
                 </div>
                 <div className="flex-shrink-0 grid grid-cols-2 gap-3 text-center">
                   {[
-                    { label: "NIM Inference", icon: "⚡" },
+                    { label: "Sandboxed Exec", icon: "🔒" },
+                    { label: "Blueprint API", icon: "📋" },
                     { label: "Multi-tenant", icon: "🏢" },
-                    { label: "Approvals", icon: "🛡️" },
                     { label: "Run History", icon: "📊" },
                   ].map((item) => (
                     <div key={item.label} className="px-4 py-3 rounded-lg bg-white/[0.03] border border-white/[0.06] text-sm">
@@ -227,7 +238,7 @@ export default function Home() {
               Built for the agent era
             </h2>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {features.map((feature, i) => (
               <FadeIn key={feature.title} delay={i * 0.08}>
                 <div className="group p-6 rounded-xl border border-white/[0.06] bg-navy-lighter/50 hover:border-teal/20 hover:bg-navy-lighter transition-all duration-300 h-full"
@@ -292,15 +303,15 @@ export default function Home() {
               style={{ clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))" }}
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-teal text-xs font-semibold mb-4">
-                ⚡ NemoClaw launches March 16
+                ✅ NemoClaw is live
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Be ready when NemoClaw drops
+                Start building on NemoClaw today
               </h2>
               <p className="text-gray-400 mb-8 max-w-md mx-auto">
-                NVIDIA announces NemoClaw at GTC 2026 on March 16.
-                flowClaw is the Day-1 managed hosting platform — join the waitlist
-                now and get priority access the moment it launches.
+                NemoClaw is live and flowClaw&apos;s integration shipped March 17.
+                Join the waitlist for early access to the managed hosting platform
+                for sandboxed AI agents.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm compact />

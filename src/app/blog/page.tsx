@@ -9,6 +9,15 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "nemoclaw-shipped-what-it-actually-is",
+    title: "NemoClaw Shipped. Here's What It Actually Is.",
+    excerpt:
+      "NemoClaw is live. The reality is more specific than pre-launch coverage suggested — it's a sandbox orchestration system, not a generic agent framework. Here's what that means for teams building on it.",
+    date: "March 17, 2026",
+    readTime: "7 min read",
+    tag: "NemoClaw",
+  },
+  {
     slug: "nemoclaw-enterprise-ai-what-teams-need-to-know",
     title: "NemoClaw is Shipping March 16. Here's What AI Teams Should Know.",
     excerpt:
