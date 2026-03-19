@@ -75,23 +75,33 @@ const features = [
       </svg>
     ),
   },
+  {
+    title: "No DevOps Required",
+    description:
+      "No VPS to configure. No Docker to debug. No terminal commands. flowClaw handles infrastructure, runtime, and scaling — you just describe what you want the agent to do.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
+        <path d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 const steps = [
   {
     step: "01",
-    title: "Design",
-    description: "Define your agent workflows with our visual builder or code-first SDK.",
+    title: "Describe",
+    description: "Pick a pre-built template or describe the workflow you want in plain language. No YAML. No config files.",
   },
   {
     step: "02",
     title: "Deploy",
-    description: "Push to production with zero-downtime deployments and auto-scaling.",
+    description: "flowClaw provisions the agent runtime, sandbox, and inference — one click. No VPS, no Docker, no terminal.",
   },
   {
     step: "03",
-    title: "Scale",
-    description: "Monitor, optimize, and scale your agents across global infrastructure.",
+    title: "Done",
+    description: "Your agent runs. You monitor it from a dashboard. It gets smarter with every run. Net work removed.",
   },
 ];
 
@@ -156,7 +166,8 @@ export default function Home() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p className="text-xl sm:text-2xl text-gray-400 max-w-2xl leading-relaxed">
-              Orchestrate intelligence. Deploy agents that think.
+              AI agents that remove work — not rearrange it.{" "}
+              <span className="text-white">No terminal. No VPS. No babysitting.</span>
             </p>
           </FadeIn>
           <FadeIn delay={0.3} className="w-full flex justify-center">
@@ -167,6 +178,52 @@ export default function Home() {
               Join 200+ teams building on NemoClaw. No spam, ever.
             </p>
           </FadeIn>
+        </div>
+      </section>
+
+      {/* ───── PAIN → PROMISE ───── */}
+      <section className="py-16 px-6 border-t border-white/[0.04]">
+        <div className="max-w-5xl mx-auto">
+          <FadeIn>
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-teal/70 mb-10">
+              Built for the operator who just wants it to work
+            </p>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                before: "Deploy Docker. Configure Redis. Debug a VPS at midnight.",
+                after: "Sign up. Pick a workflow. It runs.",
+                icon: "🖥",
+                label: "No infrastructure decisions",
+              },
+              {
+                before: "\"If you're not a developer, don't try this.\"",
+                after: "If you can send an email, you can deploy an agent.",
+                icon: "⌨",
+                label: "No terminal required",
+              },
+              {
+                before: "Spend days setting up. Too tired to use it.",
+                after: "First agent running in under 10 minutes.",
+                icon: "🔄",
+                label: "No DevOps side quest",
+              },
+            ].map((item) => (
+              <FadeIn key={item.label}>
+                <div className="rounded-xl border border-white/[0.06] bg-navy-lighter/40 p-6 h-full flex flex-col gap-4"
+                  style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
+                >
+                  <span className="text-2xl">{item.icon}</span>
+                  <div>
+                    <p className="text-sm text-red-400/70 line-through leading-relaxed mb-2">{item.before}</p>
+                    <p className="text-sm text-teal leading-relaxed">{item.after}</p>
+                  </div>
+                  <p className="mt-auto text-xs font-semibold text-white/60 uppercase tracking-wider">{item.label}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -224,7 +281,9 @@ export default function Home() {
               Open-source runtimes like NemoClaw solve execution. flowClaw solves everything
               around it — the auth, billing, tenancy, monitoring, and human oversight
               that separates a weekend demo from a product enterprises will pay for.
-              Think <strong className="text-white">Vercel for AI agents.</strong>
+              Think <strong className="text-white">Vercel for AI agents.</strong>{" "}
+              Built for the operator who wants their inbox triaged and their workflows automated —
+              not a new career in DevOps.
             </p>
           </FadeIn>
         </div>
@@ -265,7 +324,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto">
           <FadeIn>
             <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-              Three steps to autonomous AI
+              From idea to running agent in minutes
             </h2>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -306,12 +365,11 @@ export default function Home() {
                 ✅ NemoClaw is live
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Start building on NemoClaw today
+                Stop managing infrastructure.<br />Start removing work.
               </h2>
               <p className="text-gray-400 mb-8 max-w-md mx-auto">
-                NemoClaw is live and flowClaw&apos;s integration shipped March 17.
-                Join the waitlist for early access to the managed hosting platform
-                for sandboxed AI agents.
+                flowClaw is the managed platform for AI agents — NemoClaw-powered, no DevOps required.
+                Join 200+ operators and teams on the early access waitlist.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm compact />
