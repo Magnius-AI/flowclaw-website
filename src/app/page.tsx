@@ -1,114 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import FadeIn from "@/components/FadeIn";
 import HeroBackground from "@/components/HeroBackground";
 import WaitlistForm from "@/components/WaitlistForm";
-import FadeIn from "@/components/FadeIn";
-
-const features = [
-  {
-    title: "NIM Inference — Day 1",
-    description:
-      "Native NVIDIA NIM integration. Run Nemotron, DeepSeek, Llama and 40+ models with zero infrastructure setup.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Workflow Orchestration",
-    description:
-      "Chain AI actions into powerful composable pipelines.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zm0 9.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zm0 9.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Multi-Tenant Architecture",
-    description:
-      "Isolated workspaces for teams, organizations, and enterprises.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Webhook Integrations",
-    description:
-      "Connect to any external system with event-driven architecture.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-2.507a4.5 4.5 0 00-1.242-7.244l4.5-4.5a4.5 4.5 0 016.364 6.364l-1.757 1.757" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Sandboxed Execution",
-    description:
-      "Every NemoClaw agent runs inside a kernel-isolated sandbox — Landlock + seccomp + network namespaces. OS-level isolation, not just software boundaries.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Enterprise Security",
-    description:
-      "JWT authentication, role-based access control, production-ready.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Blueprint Management",
-    description:
-      "Define, version, and deploy NemoClaw workflow configs as blueprints. One-click sandbox provisioning per tenant from a shared library.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "No DevOps Required",
-    description:
-      "No VPS to configure. No Docker to debug. No terminal commands. flowClaw handles infrastructure, runtime, and scaling — you just describe what you want the agent to do.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke="currentColor" strokeWidth={1.5}>
-        <path d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-];
-
-const steps = [
-  {
-    step: "01",
-    title: "Describe",
-    description: "Pick a pre-built template or describe the workflow you want in plain language. No YAML. No config files.",
-  },
-  {
-    step: "02",
-    title: "Deploy",
-    description: "flowClaw provisions the agent runtime, sandbox, and inference — one click. No VPS, no Docker, no terminal.",
-  },
-  {
-    step: "03",
-    title: "Done",
-    description: "Your agent runs. You monitor it from a dashboard. It gets smarter with every run. Net work removed.",
-  },
-];
+import { pilotOffers, productPillars, useCases } from "@/lib/flowclaw-product";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* ───── NAV ───── */}
       <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-navy/60 border-b border-white/[0.04]">
         <div className="flex items-center gap-3">
           <Image src="/logo-64.png" alt="flowClaw logo" width={44} height={44} className="drop-shadow-[0_0_8px_rgba(0,229,204,0.5)]" priority />
@@ -122,104 +21,111 @@ export default function Home() {
             Blog
           </Link>
           <a
-            href="#waitlist"
+            href="#pilot"
             className="px-5 py-2 bg-teal text-navy text-sm font-bold rounded-lg hover:bg-teal-dark transition-all duration-200 shadow-[0_0_12px_rgba(0,229,204,0.25)] hover:shadow-[0_0_20px_rgba(0,229,204,0.4)]"
           >
-            Get Early Access
+            Join Design Pilot
           </a>
         </div>
       </nav>
 
-      {/* ───── HERO ───── */}
       <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
         <HeroBackground />
-        <div className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
+        <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
           <FadeIn>
             <Image
               src="/logo-192.png"
               alt="flowClaw emblem"
-              width={148}
-              height={148}
+              width={132}
+              height={132}
               className="mx-auto drop-shadow-[0_0_40px_rgba(0,229,204,0.5)]"
               priority
             />
           </FadeIn>
-          <FadeIn delay={0.05}>
-            <div className="flex flex-col items-center gap-2">
-              <a
-                href="https://github.com/NVIDIA/NemoClaw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-1.5 border border-teal/30 rounded-full text-teal text-sm bg-teal/10 hover:bg-teal/15 transition-colors"
-              >
-                <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
-                NVIDIA NemoClaw is live — flowClaw integration shipped March 17
-                <span className="text-teal/60 text-xs">↗</span>
-              </a>
+          <FadeIn delay={0.06}>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-teal/30 rounded-full text-teal text-sm bg-teal/10">
+              <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
+              AWS-ready scaffold · human-in-the-loop control plane
             </div>
           </FadeIn>
-          <FadeIn delay={0.1}>
-            <h1 id="waitlist" className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
-              <span className="text-white">flow</span>
-              <span className="text-teal">Claw</span>
+          <FadeIn delay={0.12}>
+            <h1 id="pilot" className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] text-white">
+              AI agents you can actually trust.
             </h1>
           </FadeIn>
-          <FadeIn delay={0.2}>
-            <p className="text-xl sm:text-2xl text-gray-400 max-w-2xl leading-relaxed">
-              AI agents that remove work — not rearrange it.{" "}
-              <span className="text-white">No terminal. No VPS. No babysitting.</span>
+          <FadeIn delay={0.18}>
+            <p className="text-xl sm:text-2xl text-gray-400 max-w-3xl leading-relaxed">
+              Turn SOPs into agentic workflows with approvals, run history, and human control built in.
             </p>
           </FadeIn>
-          <FadeIn delay={0.3} className="w-full flex justify-center">
+          <FadeIn delay={0.24} className="w-full flex justify-center">
             <WaitlistForm />
           </FadeIn>
-          <FadeIn delay={0.4}>
-            <p className="text-gray-500 text-sm">
-              Join 200+ teams building on NemoClaw. No spam, ever.
-            </p>
+          <FadeIn delay={0.3}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-sm text-gray-500">
+              <Link href="/app" className="text-teal hover:text-teal-dark transition-colors">
+                Preview mock control room →
+              </Link>
+              <span className="hidden sm:inline text-white/20">•</span>
+              <Link href="/blog" className="hover:text-gray-300 transition-colors">
+                Read the blog
+              </Link>
+            </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* ───── PAIN → PROMISE ───── */}
-      <section className="py-16 px-6 border-t border-white/[0.04]">
-        <div className="max-w-5xl mx-auto">
+      <section className="py-20 px-6 border-t border-white/[0.04]">
+        <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <p className="text-center text-xs font-semibold uppercase tracking-widest text-teal/70 mb-10">
-              Built for the operator who just wants it to work
+            <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-14">
+              Product wedges for trustworthy automation
+            </h2>
+          </FadeIn>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {productPillars.map((pillar, i) => (
+              <FadeIn key={pillar.title} delay={i * 0.08}>
+                <div
+                  className="rounded-xl border border-white/[0.06] bg-navy-lighter/50 p-6 h-full flex flex-col gap-4"
+                  style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
+                >
+                  <h3 className="text-xl font-semibold text-white">{pillar.title}</h3>
+                  <p className="text-sm text-gray-400 leading-relaxed">{pillar.summary}</p>
+                  <ul className="text-sm text-gray-300 space-y-2">
+                    {pillar.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-2">
+                        <span className="text-teal">•</span>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <FadeIn>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-4">
+              Start from real SOPs, not prompts in a vacuum
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <p className="text-center text-gray-400 max-w-2xl mx-auto mb-12">
+              Mock-first blueprint for operations, finance, and support teams that need accountability before full autonomy.
             </p>
           </FadeIn>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                before: "Deploy Docker. Configure Redis. Debug a VPS at midnight.",
-                after: "Sign up. Pick a workflow. It runs.",
-                icon: "🖥",
-                label: "No infrastructure decisions",
-              },
-              {
-                before: "\"If you're not a developer, don't try this.\"",
-                after: "If you can send an email, you can deploy an agent.",
-                icon: "⌨",
-                label: "No terminal required",
-              },
-              {
-                before: "Spend days setting up. Too tired to use it.",
-                after: "First agent running in under 10 minutes.",
-                icon: "🔄",
-                label: "No DevOps side quest",
-              },
-            ].map((item) => (
-              <FadeIn key={item.label}>
-                <div className="rounded-xl border border-white/[0.06] bg-navy-lighter/40 p-6 h-full flex flex-col gap-4"
-                  style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
-                >
-                  <span className="text-2xl">{item.icon}</span>
-                  <div>
-                    <p className="text-sm text-red-400/70 line-through leading-relaxed mb-2">{item.before}</p>
-                    <p className="text-sm text-teal leading-relaxed">{item.after}</p>
-                  </div>
-                  <p className="mt-auto text-xs font-semibold text-white/60 uppercase tracking-wider">{item.label}</p>
+            {useCases.map((item, i) => (
+              <FadeIn key={item.title} delay={i * 0.08}>
+                <div className="rounded-xl border border-white/[0.06] bg-navy-lighter/40 p-6 h-full">
+                  <p className="text-xs uppercase tracking-wide text-teal/80 font-semibold mb-2">{item.role}</p>
+                  <h3 className="text-lg font-semibold text-white mb-3">{item.title}</h3>
+                  <p className="text-sm text-red-300/70 mb-3">Today: {item.currentState}</p>
+                  <p className="text-sm text-gray-300">With flowClaw: {item.withFlowClaw}</p>
                 </div>
               </FadeIn>
             ))}
@@ -227,149 +133,61 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───── NEMOCLAW CALLOUT ───── */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <div className="relative rounded-2xl border border-teal/20 bg-gradient-to-r from-teal/[0.04] via-transparent to-blue-500/[0.04] p-8 sm:p-10"
-              style={{ clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))" }}
-            >
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
-                <div className="flex-1">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-teal text-xs font-semibold mb-4">
-                    ✅ SHIPPED · MARCH 17, 2026
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-                    The managed hosting layer for NVIDIA NemoClaw
-                  </h2>
-                  <p className="text-gray-400 leading-relaxed">
-                    NemoClaw runs OpenClaw agents in kernel-isolated sandboxes — Landlock, seccomp,
-                    network namespaces. flowClaw wraps it with the production layer it&apos;s missing:
-                    multi-tenancy, auth, billing, run history, human-in-the-loop approvals, and a
-                    full sandbox management API. <strong className="text-white">Integration is live. Day-1 on Nemotron-3-Super-120B.</strong>
-                  </p>
-                </div>
-                <div className="flex-shrink-0 grid grid-cols-2 gap-3 text-center">
-                  {[
-                    { label: "Sandboxed Exec", icon: "🔒" },
-                    { label: "Blueprint API", icon: "📋" },
-                    { label: "Multi-tenant", icon: "🏢" },
-                    { label: "Run History", icon: "📊" },
-                  ].map((item) => (
-                    <div key={item.label} className="px-4 py-3 rounded-lg bg-white/[0.03] border border-white/[0.06] text-sm">
-                      <div className="text-xl mb-1">{item.icon}</div>
-                      <div className="text-gray-300 font-medium text-xs">{item.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ───── WHAT IS FLOWCLAW ───── */}
-      <section className="py-16 px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
-              The Production Platform for AI Agents
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <p className="text-lg text-gray-400 leading-relaxed">
-              Open-source runtimes like NemoClaw solve execution. flowClaw solves everything
-              around it — the auth, billing, tenancy, monitoring, and human oversight
-              that separates a weekend demo from a product enterprises will pay for.
-              Think <strong className="text-white">Vercel for AI agents.</strong>{" "}
-              Built for the operator who wants their inbox triaged and their workflows automated —
-              not a new career in DevOps.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ───── FEATURES ───── */}
-      <section className="py-24 px-6">
+      <section className="py-20 px-6 border-t border-white/[0.04]">
         <div className="max-w-6xl mx-auto">
           <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-              Built for the agent era
+            <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-14">
+              Choose your pilot path
             </h2>
           </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {features.map((feature, i) => (
-              <FadeIn key={feature.title} delay={i * 0.08}>
-                <div className="group p-6 rounded-xl border border-white/[0.06] bg-navy-lighter/50 hover:border-teal/20 hover:bg-navy-lighter transition-all duration-300 h-full"
-                  style={{ clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))" }}
-                >
-                  <div className="text-teal mb-4 group-hover:scale-110 transition-transform duration-300">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {pilotOffers.map((offer, i) => {
+              const isExternalAnchor = offer.ctaHref.startsWith("#");
+              const ctaClasses =
+                "inline-flex items-center justify-center px-4 py-2 rounded-lg bg-teal text-navy font-semibold hover:bg-teal-dark transition-colors";
 
-      {/* ───── HOW IT WORKS ───── */}
-      <section className="py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <FadeIn>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-16">
-              From idea to running agent in minutes
-            </h2>
-          </FadeIn>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <FadeIn key={step.step} delay={i * 0.15}>
-                <div className="relative text-center">
-                  <span className="text-6xl font-black text-teal/10">
-                    {step.step}
-                  </span>
-                  <h3 className="text-xl font-bold text-white -mt-4 mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                  {i < steps.length - 1 && (
-                    <div className="hidden md:block absolute top-8 -right-4 text-teal/30">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                        <path d="M9 5l7 7-7 7" />
-                      </svg>
+              return (
+                <FadeIn key={offer.title} delay={i * 0.08}>
+                  <div
+                    className="rounded-xl border border-teal/20 bg-gradient-to-b from-teal/[0.06] to-transparent p-6 h-full flex flex-col"
+                    style={{ clipPath: "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))" }}
+                  >
+                    <h3 className="text-xl font-semibold text-white mb-3">{offer.title}</h3>
+                    <p className="text-gray-300 text-sm leading-relaxed mb-6">{offer.summary}</p>
+                    <div className="mt-auto">
+                      {isExternalAnchor ? (
+                        <a href={offer.ctaHref} className={ctaClasses}>
+                          {offer.ctaLabel}
+                        </a>
+                      ) : (
+                        <Link href={offer.ctaHref} className={ctaClasses}>
+                          {offer.ctaLabel}
+                        </Link>
+                      )}
                     </div>
-                  )}
-                </div>
-              </FadeIn>
-            ))}
+                  </div>
+                </FadeIn>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ───── EARLY ACCESS CTA ───── */}
-      <section className="py-24 px-6">
+      <section id="waitlist" className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <FadeIn>
-            <div className="p-12 rounded-2xl border border-teal/10 bg-gradient-to-b from-teal/[0.03] to-transparent"
+            <div
+              className="p-12 rounded-2xl border border-teal/10 bg-gradient-to-b from-teal/[0.03] to-transparent"
               style={{ clipPath: "polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px))" }}
             >
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal/10 border border-teal/20 rounded-full text-teal text-xs font-semibold mb-4">
-                ✅ NemoClaw is live
+                Design partner intake
               </div>
               <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Stop managing infrastructure.<br />Start removing work.
+                Bring one SOP. Leave with an agent workflow scaffold.
               </h2>
-              <p className="text-gray-400 mb-8 max-w-md mx-auto">
-                flowClaw is the managed platform for AI agents — NemoClaw-powered, no DevOps required.
-                Join 200+ operators and teams on the early access waitlist.
+              <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+                We&apos;ll help you map approvals, risk checks, and run visibility for one high-value workflow.
               </p>
               <div className="flex justify-center">
                 <WaitlistForm compact />
@@ -379,7 +197,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───── FOOTER ───── */}
       <footer className="py-12 px-6 border-t border-white/[0.06]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -389,9 +206,7 @@ export default function Home() {
               <span className="text-teal">Claw</span>
             </span>
           </div>
-          <p className="text-gray-500 text-sm">
-            &copy; 2025 flowClaw. All rights reserved.
-          </p>
+          <p className="text-gray-500 text-sm">&copy; 2026 flowClaw. All rights reserved.</p>
         </div>
       </footer>
     </main>
