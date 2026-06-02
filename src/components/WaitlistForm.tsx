@@ -90,7 +90,7 @@ export default function WaitlistForm({ compact = false }: { compact?: boolean })
               disabled={status === "loading"}
               className="px-8 py-3 bg-teal text-navy font-bold rounded-lg hover:bg-teal-dark transition-all duration-200 disabled:opacity-60 shadow-[0_0_20px_rgba(0,229,204,0.3)] hover:shadow-[0_0_30px_rgba(0,229,204,0.5)] cursor-pointer whitespace-nowrap"
             >
-              {status === "loading" ? "Joining..." : "Get Early Access"}
+              {status === "loading" ? "Sending..." : "Request Pilot"}
             </button>
           </div>
           {emailError && <p className="text-red-400 text-sm">{emailError}</p>}

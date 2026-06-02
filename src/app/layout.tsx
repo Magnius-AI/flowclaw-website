@@ -9,23 +9,23 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://flowclaw.io"),
-  title: "flowClaw — Managed Hosting for NVIDIA NemoClaw & AI Agents",
+  title: "flowClaw — AI Agent Workflow Control Layer",
   description:
-    "flowClaw is the production platform for NVIDIA NemoClaw. Multi-tenancy, auth, billing, NIM inference, human-in-the-loop approvals, and observability — Day-1 ready for GTC 2026. Join the waitlist.",
-  keywords: ["NemoClaw", "NVIDIA NIM", "AI agents", "NemoClaw hosting", "AI agent platform", "NemoClaw managed", "GTC 2026", "flowClaw"],
+    "flowClaw helps teams run AI-agent workflows with approval gates, run history, policy rules, and human control. Request a design partner Agent Workflow Pilot.",
+  keywords: ["AI agents", "agent workflows", "human-in-the-loop", "agent approvals", "run ledger", "SOP automation", "agent governance", "flowClaw"],
   openGraph: {
-    title: "flowClaw — The Managed Platform for NVIDIA NemoClaw",
+    title: "flowClaw — AI Agents You Can Actually Trust",
     description:
-      "NemoClaw ships the agent runtime. flowClaw ships everything else. Multi-tenancy, auth, billing, NIM inference, and observability. Day-1 ready.",
+      "Turn repeatable workflows into AI-assisted runs with approval gates, run history, policy rules, and human control built in.",
     siteName: "flowClaw",
     type: "website",
     images: [{ url: "/logo-192.png", width: 192, height: 192, alt: "flowClaw logo" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "flowClaw — Managed Platform for NVIDIA NemoClaw",
+    title: "flowClaw — AI Agent Workflow Control Layer",
     description:
-      "NemoClaw ships the agent runtime. flowClaw ships everything else. Day-1 NIM inference support. Join the waitlist.",
+      "Approval gates, run ledgers, policy rules, and human control for AI-agent workflows.",
   },
   icons: {
     icon: [
@@ -44,17 +44,11 @@ const jsonLd = {
   "operatingSystem": "Cloud",
   "url": "https://flowclaw.io",
   "description":
-    "The managed hosting platform for NVIDIA NemoClaw and enterprise AI agents. Multi-tenancy, auth, billing, NIM inference, human-in-the-loop approvals, and observability — Day-1 ready for GTC 2026.",
+    "AI-agent workflow control layer with approval gates, run history, policy rules, SOP-to-agent pilots, and human-in-the-loop governance.",
   "offers": {
     "@type": "Offer",
-    "price": "199",
     "priceCurrency": "USD",
-    "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": "199",
-      "priceCurrency": "USD",
-      "unitText": "MONTH",
-    },
+    "description": "Design partner Agent Workflow Pilots are available by request.",
   },
   "publisher": {
     "@type": "Organization",
@@ -69,13 +63,13 @@ const jsonLd = {
     "sameAs": ["https://github.com/Magnius-AI/flowclaw-website"],
   },
   "keywords": [
-    "NemoClaw",
-    "NVIDIA NIM",
-    "AI agent platform",
-    "NemoClaw hosted",
-    "NemoClaw managed hosting",
-    "enterprise AI agents",
-    "GTC 2026",
+    "AI agents",
+    "agent workflows",
+    "human-in-the-loop approvals",
+    "agent run ledger",
+    "agent governance",
+    "SOP automation",
+    "AI workflow pilot",
   ],
 };
 

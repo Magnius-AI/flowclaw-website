@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "flowClaw — Managed Platform for NVIDIA NemoClaw";
+export const alt = "flowClaw — AI Agent Workflow Control Layer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -48,7 +48,7 @@ export default function OGImage() {
           }}
         />
 
-        {/* GTC badge */}
+        {/* Pilot badge */}
         <div
           style={{
             display: "flex",
@@ -70,13 +70,12 @@ export default function OGImage() {
             }}
           />
           <span style={{ color: "#00E5CC", fontSize: 18, fontWeight: 600 }}>
-            NVIDIA GTC 2026 · March 16 · NemoClaw Day-1 Ready
+            Design partner pilots now open
           </span>
         </div>
 
         {/* Logo + wordmark */}
         <div style={{ display: "flex", alignItems: "center", gap: 20, marginBottom: 24 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="https://flowclaw.io/logo-192.png"
             width={80}
@@ -100,8 +99,8 @@ export default function OGImage() {
             lineHeight: 1.4,
           }}
         >
-          The managed hosting layer for NVIDIA NemoClaw.
-          Auth · Billing · NIM Inference · Observability.
+          AI agents you can actually trust.
+          Approvals · Run Ledger · Policy Gates · Human Control.
         </p>
 
         {/* Bottom URL */}
