@@ -16,7 +16,9 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on:
+      group: magnius-ai-runners
+      labels: [self-hosted, linux, x64, relius]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,7 +46,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on:
+      group: magnius-ai-runners
+      labels: [self-hosted, linux, x64, relius]
     needs: build
     steps:
       - name: Deploy to GitHub Pages
